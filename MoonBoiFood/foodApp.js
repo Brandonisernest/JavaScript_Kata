@@ -13,9 +13,11 @@ class Meal {
 }
 
 class MealList {
-  constructor() {}
+  constructor(_score) {
+    this.score = _score
+  }
 
-  mealList = [
+  goodMealList = [
     new Meal(
       'Juicy Steak',
       'Dinner',
@@ -42,23 +44,32 @@ class MealList {
     ),
   ];
 
+
+  badMealList = [
+    new Meal(
+      'Gross Hot Pocket',
+      'Dinner',
+      'American',
+      'https://www.thespruceeats.com/thmb/bdQcbuwkcj-I0O8WFCRaAhNZBGc=/2595x1726/filters:fill(auto,1)/Hotpockethoriz-39f64d7e4c5048e3af541c677b435351.jpg'
+    )
+  ];
+
   urlTest() {
-    for (let meal of this.mealList) {
+    for (let meal of this.goodMealList) {
       console.log(meal.url);
     }
   }
 
   render() {
     let renderHook = document.getElementById('meal-output');
-    let mealIdx = Math.floor(Math.random() * this.mealList.length);
-  
-    renderHook.innerHTML = `<img src=${this.mealList[mealIdx].url}></img>`;
-    return renderHook;
+    // let renderHook = document.getElementById('meal-output')
+    let goodMealIdx = Math.floor(Math.random() * this.goodMealList.length);
+    let badMealIdx = Math.floor(Math.random() * this.badMealList.length);
+ 
+    if (this.score > 0){
+    renderHook.innerHTML = `<img src=${this.goodMealList[goodMealIdx].url}></img>`;
+    return renderHook;}
+    else { renderHook.innerHTML = `<img src=${this.badMealList[badMealIdx].url}></img>`;
+    return renderHook;}
   }
 }
-
-function mealBtnHandler() {
-    let newMealList = new MealList();
-    newMealList.render();
-}
-mealBtn.addEventListener('click', mealBtnHandler);

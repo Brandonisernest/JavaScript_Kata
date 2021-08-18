@@ -54,8 +54,6 @@ function loadQuiz() {
   b_text.innerText = currentQuizData.b;
   c_text.innerText = currentQuizData.c;
   d_text.innerText = currentQuizData.d;
-
-  
 }
 
 function submitBtnHandler() {
@@ -70,13 +68,35 @@ function submitBtnHandler() {
     if (currentQuiz < quizData.length) {
       loadQuiz();
     } else {
-      quiz.innerHTML = `
-            <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
-            
-            <button onclick="location.reload()">Reload</button>
-        `;
+      quizResults(score);
+
+      // else {
+      // quiz.innerHTML = `
+      //       <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
+
+      //       <button onclick="location.reload()">Reload</button>
+      //   `;
     }
   }
+}
+
+function quizResults(score) {
+  if (score < 1) {
+    quiz.innerHTML = `
+              <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
+              <h2>YOU EAT A GROSS HOT POCKET</h2  >
+              <button onclick="location.reload()">Reload</button>
+          `;
+  } else {
+    quiz.innerHTML = `
+              <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
+              <h2>YOU EAT SOMETHING NICE</h2  >
+              <button onclick="location.reload()">Reload</button>
+          `;
+    // alert('WOW YOU EAT EVYERTHING!');
+  }
+  let newMealList = new MealList(score);
+  newMealList.render();
 }
 
 function getSelected() {
