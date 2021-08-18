@@ -9,17 +9,17 @@ const quizData = [
   },
   {
     question: 'Who is the President of US?',
-    a: 'Florin Pop',
-    b: 'Donald Trump',
-    c: 'Ivan Saldano',
-    d: 'Mihai Andrei',
+    a: 'Donald Trump',
+    b: 'Joe Biden',
+    c: 'Ron Paul',
+    d: 'Satoshi Nakamoto',
     correct: 'b',
   },
   {
     question: 'What does HTML stand for?',
     a: 'Hypertext Markup Language',
-    b: 'Cascading Style Sheet',
-    c: 'Jason Object Notation',
+    b: 'Hot Things Move Lightly',
+    c: 'Humorous Timmy Makes Laughter',
     d: 'Helicopters Terminals Motorboats Lamborginis',
     correct: 'a',
   },
@@ -30,6 +30,22 @@ const quizData = [
     c: '1994',
     d: 'none of the above',
     correct: 'b',
+  },
+  {
+    question: 'What popular cartoon was created by Matt Groening?',
+    a: 'South Park',
+    b: 'The Simpsons',
+    c: 'Powerpuff Girls',
+    d: 'Samurai JAck',
+    correct: 'b',
+  },
+  {
+    question: 'Which CS Go Pro team won the 2021 Colonge Pro Finals',
+    a: 'Virtus.Pro',
+    b: 'Vitality',
+    c: 'NaVi',
+    d: 'Faze Clan',
+    correct: 'c',
   },
 ];
 
@@ -81,16 +97,16 @@ function submitBtnHandler() {
 }
 
 function quizResults(score) {
-  if (score < 1) {
+  if (score < 3) {
     quiz.innerHTML = `
               <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
-              <h2>YOU EAT A GROSS HOT POCKET</h2  >
+              <h2>LOW IQ MOON BOI...YOU EAT A GROSS HOT POCKET</h2  >
               <button onclick="location.reload()">Reload</button>
           `;
   } else {
     quiz.innerHTML = `
               <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
-              <h2>YOU EAT SOMETHING NICE</h2  >
+              <h2>95th PERCENTILE MOON BOI. YOU EAT SOMETHING NICE</h2  >
               <button onclick="location.reload()">Reload</button>
           `;
     // alert('WOW YOU EAT EVYERTHING!');
