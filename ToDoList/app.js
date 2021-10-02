@@ -1,44 +1,50 @@
-//declare global task array to store tasks
-// let toDoArr = [];
+//event handlers
+const taskBtn = document.getElementById('task-btn');
+const inputBar = document.getElementById('input-bar');
 
-//input bar
-class inputBar {
+class toDoList {
   constructor() {
     this.toDoArr = [];
   }
 
-  inputBtnHandler(htmlelem) {
-    let toDoValue = htmlelem.value;
-    this.toDoArr.push(toDoValue);
-    console.log(this.toDoArr);
+  statusBtnHandler(renderhook, element) {
+    renderhook.remove(element);
+    // alert('works1');
   }
 
-  render() {
-    const renderHook = document.getElementById('input-bar');
-    const inputEl = document.createElement('input');
-    const inputBtnEl = document.createElement('button');
-    inputBtnEl.addEventListener(
+  taskBtnHandler(renderhook) {
+    let toDoEl = document.createElement('li');
+    const statusBtn = document.createElement('button');
+    statusBtn.className = 'status-btn';
+    statusBtn.innerText = 'Completed?';
+    toDoEl.innerHTML = inputBar.value;
+    this.toDoArr.push(inputBar.value);
+
+    statusBtn.addEventListener(
       'click',
-      this.inputBtnHandler.bind(this, inputEl)
-    ); //what is this?
-
-    inputBtnEl.innerText = 'Add To Do!';
-    renderHook.append(inputEl);
-    renderHook.append(inputBtnEl);
-    return renderHook;
-  }
-}
-
-class toDoList {
-  constructor() {
-      this.instanceOfInput = new input
+      this.statusBtnHandler.bind(this, renderhook, toDoEl)
+    );
+    // statusBtn.addEventListener('click', () => {
+    //     renderhook.remove(toDoEl);
+    //   });
+    renderhook.append(toDoEl, statusBtn);
+    // console.log(this.toDoArr);
   }
 
   render() {
     const renderHook = document.getElementById('todo-container'); //renderHook will be the html "section that I render"
-    const toDoEl = document.createElement('ul');
-    toDoEl.innerHTML = `item 1:`;
-    renderHook.append(toDoEl); //adding the elements to the hook
+    taskBtn.addEventListener(
+      'click',
+      this.taskBtnHandler.bind(this, renderHook)
+    );
+
+    const statusBtn = renderHook.querySelector('.status-btn');
+    console.log('this is status butn?',statusBtn);
+    // statusBtn.addEventListener(
+    //     'click',
+    //     this.statusBtnHandler.bind(this, renderhook, toDoEl)
+    //   );
+    // renderHook.append(test); //adding the elements to the hook
     //hook is something that allows you adjust without RERENDERING
     return renderHook;
   }
@@ -49,9 +55,11 @@ class App {
   constructor() {}
 
   render() {
-    const inputBarRender = new inputBar();
+    //render input bar on app
+    // const inputBarRender = new inputBar();
+    //render toDoListin aoo
     const toDoListRender = new toDoList();
-    inputBarRender.render();
+    // inputBarRender.render();
     toDoListRender.render();
   }
 }
@@ -61,3 +69,35 @@ todoApp.render();
 
 //questions:
 //1. I couldn't use my inputBtnHandler properly without this.inputBtnHandler.bind(this, ...); <--what is happening here
+
+//input bar
+// class inputBar {
+//   constructor() {
+//   }
+
+//   inputBtnHandler(htmlelem) {
+//     let toDoValue = htmlelem.value;
+//     toDoArr.push(toDoValue);
+//   }
+
+//   listRenderHandler(renderhook){
+//       renderhook.append(toDoArr[0]);
+
+//   }
+
+//   render() {
+//     const renderHook = document.getElementById('input-bar');
+//     const inputEl = document.createElement('input');
+//     const inputBtnEl = document.createElement('button');
+//     inputBtnEl.innerText = 'Add To Do!';
+//     inputBtnEl.addEventListener(
+//       'click',()=>
+//       {this.inputBtnHandler.bind(this, inputEl);
+
+//     }
+//     ); //what is this?
+//     renderHook.append(inputEl);
+//     renderHook.append(inputBtnEl);
+//     return renderHook;
+//   }
+// }
